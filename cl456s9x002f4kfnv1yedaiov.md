@@ -1698,6 +1698,25 @@ export async function exportCallDataGroth16(input, wasmPath, zkeyPath) {
 }
 ```
 
+**Note:** If you get an error importing `groth16` from `snarkjs` that says:
+
+```text
+./node_modules/fastfile/src/fastfile.js
+Can't import the named export 'O_TRUNC' (imported as 'O_TRUNC') from default-exporting module (only default export is available)
+```
+
+Then, import `groth16` like so:
+
+```javascript
+const groth16 = require("snarkjs").groth16;
+```
+
+Or this way:
+
+```javascript
+const { groth16 } = require("snarkjs");
+```
+
 - Inside the `zksudoku-ui/zkproof` folder, create the `sudoku` folder and inside this new folder created, create the `snarkjsSudoku.js` file and add to it:
 
 ```javascript
@@ -2572,7 +2591,7 @@ runMain();
 result = await contract.verifySudoku(calldata.proof, calldata.publicSignals);
 ```
 
-- Change the `snarkjsZkproof.js`, inside `zksudoku-ui/zkproof` to use Plonk:
+- Change `snarkjsZkproof.js`, inside `zksudoku-ui/zkproof` to use Plonk:
 
 ```javascript
 import { plonk } from "snarkjs";
@@ -2592,7 +2611,26 @@ export async function exportCallDataPlonk(input, wasmPath, zkeyPath) {
 }
 ```
 
-- Change `snarkjsSudoku.js` file inside `zksudoku-ui/zkproof/sudoku` to use the `exportCallDataPlonk` function:
+**Note:** If you get an error importing `plonk` from `snarkjs` that says:
+
+```text
+./node_modules/fastfile/src/fastfile.js
+Can't import the named export 'O_TRUNC' (imported as 'O_TRUNC') from default-exporting module (only default export is available)
+```
+
+Then, import `plonk` like so:
+
+```javascript
+const plonk = require("snarkjs").plonk;
+```
+
+Or this way:
+
+```javascript
+const { plonk } = require("snarkjs");
+```
+
+- Change the `snarkjsSudoku.js` file inside `zksudoku-ui/zkproof/sudoku` to use the `exportCallDataPlonk` function:
 
 ```javascript
 import { exportCallDataPlonk } from "../snarkjsZkproof";
