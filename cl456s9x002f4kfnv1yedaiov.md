@@ -1617,7 +1617,7 @@ You will see something like this:
 
 You can see that both versions of `snarkjs` are the same: `0.4.19`.
 
-Two ways you can import snarkjs in the client side:
+Two ways you can import `snarkjs` in the client side:
 
 **1-** Using the `snarkjs.min.js` file.
 
@@ -1629,17 +1629,17 @@ cp ./node_modules/snarkjs/build/snarkjs.min.js ./public
 
 Add `<Script id="snarkjs" src="/snarkjs.min.js" />` in `layout.js`
 
-You can access the library using window.snarkjs.
+You can access the library using `window.snarkjs`.
 
 **2-** As a package.
 
-To install snarkjs, run:
+To install `snarkjs`, run:
 
 ```bash
 yarn add snarkjs
 ```
 
-Configure webpack in the `next.config.js` file to use snarkjs:
+Configure webpack in the `next.config.js` file to use `snarkjs`:
 
 ```javascript
 const nextConfig = {
