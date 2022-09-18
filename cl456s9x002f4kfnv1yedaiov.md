@@ -932,6 +932,23 @@ contract Sudoku {
 yarn add snarkjs
 ```
 
+**Note:** Make sure you have the same global and local version of `snarkjs`.
+
+- To check the global `snarkjs` version, open a console and run:
+
+  ```bash
+  snarkjs -v
+  ```
+  You will see something like this:
+
+  ![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
+
+- To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
+  
+  ![contractslocalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663535012941/-prtnTr9Q.png align="left")
+
+  You can see that both versions of `snarkjs` are the same: `0.4.19`.
+
 - Create a `zkproof` folder:
 
 ```bash
@@ -1583,9 +1600,26 @@ yarn add wagmi ethers
 yarn add snarkjs
 ```
 
+**Note:** Make sure you have the same global and local version of `snarkjs`.
+
+- To check the global `snarkjs` version, open a console and run:
+
+  ```bash
+  snarkjs -v
+  ```
+  You will see something like this:
+
+  ![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
+
+- To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
+
+  ![localsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532693336/9VMT2vbmT.png align="left")
+
+  You can see that both versions of `snarkjs` are the same: `0.4.19`.
+
 Two ways you can import snarkjs in the client side:
 
-- Using the `snarkjs.min.js` file.
+**1-** Using the `snarkjs.min.js` file.
 
 Copy the `snarkjs.min.js` inside the `public` folder:
 
@@ -1597,7 +1631,7 @@ Add `<Script id="snarkjs" src="/snarkjs.min.js" />` in `layout.js`
 
 You can access the library using window.snarkjs.
 
-- As a package.
+**2-** As a package.
 
 To install snarkjs, run:
 
@@ -1623,6 +1657,8 @@ module.exports = nextConfig;
 ```
 
 **Note:** The `config.experiments = { asyncWebAssembly: true };` line is for using wasm files.
+
+In this guide, I use `snarkjs` as a package (way 2).
 
 ### 14. Add some configuration
 
@@ -2698,4 +2734,4 @@ The following graphic shows the structure of the most important zero knowledge e
 
 Now we have a complete zk dapp that people can use.
 
-We can see that using Plonk instead of Groth16 can avoid a trusted ceremony for each circuit, but Plonk is not better for the user experience because it is slower and the zkey file is quite larger.
+We can see that using Plonk instead of Groth16 can avoid a trusted ceremony for each circuit, but Plonk is not better for the user experience because it is slower and the zkey file is quite larger.  
