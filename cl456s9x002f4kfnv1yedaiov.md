@@ -934,20 +934,20 @@ yarn add snarkjs
 
 **Note:** Make sure you have the same global and local version of `snarkjs`.
 
-- To check the global `snarkjs` version, open a console and run:
+**1-** To check the global `snarkjs` version, open a console and run:
 
-  ```bash
-  snarkjs -v
-  ```
-  You will see something like this:
+```bash
+snarkjs -v
+```
+You will see something like this:
 
-  ![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
+![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
 
-- To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
+**2-** To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
   
-  ![contractslocalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663535012941/-prtnTr9Q.png align="left")
+![contractslocalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663535012941/-prtnTr9Q.png align="left")
 
-  You can see that both versions of `snarkjs` are the same: `0.4.19`.
+You can see that both versions of `snarkjs` are the same: `0.4.19`.
 
 - Create a `zkproof` folder:
 
@@ -1602,20 +1602,20 @@ yarn add snarkjs
 
 **Note:** Make sure you have the same global and local version of `snarkjs`.
 
-- To check the global `snarkjs` version, open a console and run:
+**1-** To check the global `snarkjs` version, open a console and run:
 
-  ```bash
-  snarkjs -v
-  ```
-  You will see something like this:
+```bash
+snarkjs -v
+```
+You will see something like this:
 
-  ![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
+![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
 
-- To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
+**2-** To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
 
-  ![localsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532693336/9VMT2vbmT.png align="left")
+![localsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532693336/9VMT2vbmT.png align="left")
 
-  You can see that both versions of `snarkjs` are the same: `0.4.19`.
+You can see that both versions of `snarkjs` are the same: `0.4.19`.
 
 Two ways you can import snarkjs in the client side:
 
