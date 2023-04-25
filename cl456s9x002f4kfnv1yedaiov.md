@@ -1610,7 +1610,7 @@ Go to [https://sepoliafaucet.com/](https://sepoliafaucet.com/) and follow the in
 npx hardhat run scripts/deploy.js --network sepolia
 ```
 
-![DeployedContractsImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638753683/tf1mjf8Pa.png align="left")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1682384003458/c32e8e0b-eda5-486d-87eb-0e0539bf81e4.png align="center")
 
 **Note:** You can see the transactions on the Sepolia Block Explorer: [https://sepolia.etherscan.io/](https://sepolia.etherscan.io/)
 
@@ -1933,7 +1933,7 @@ result = await contract.verifySudoku(
     
     ```json
     {
-      "sudokuContract": "0xCdf6cb8d73A7D382f154A1e67F12c7319987cb31"
+      "sudokuContract": "0x74fFA95140FC8bB10A8C9d9bac4E133E0eb628D3"
     }
     ```
     
