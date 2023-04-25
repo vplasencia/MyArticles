@@ -1,4 +1,12 @@
-## How to create a Zero Knowledge DApp: From zero to production
+---
+title: "How to create a Zero Knowledge DApp: From zero to production"
+datePublished: Wed Jun 08 2022 06:05:00 GMT+0000 (Coordinated Universal Time)
+cuid: cl456s9x002f4kfnv1yedaiov
+slug: how-to-create-a-zero-knowledge-dapp-from-zero-to-production
+cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1654662460748/il_O848lH.png
+tags: web-application, web3, zero-knowledge
+
+---
 
 This is a step-by-step guide on how to build a [Zero Knowledge](https://en.wikipedia.org/wiki/Zero-knowledge_proof) (zk) [Decentralized Application](https://en.wikipedia.org/wiki/Decentralized_application) (DApp) from zero to production.
 
@@ -18,8 +26,10 @@ If you want to understand more about some topics, click on the links.
 
 All the code is open source so you can read the article and look at the code:
 
-- zkSudoku using Groth16: <https://github.com/vplasencia/zkSudoku>
-- zkSudoku using Plonk: <https://github.com/vplasencia/zkSudoku-plonk>
+* zkSudoku using Groth16: [https://github.com/vplasencia/zkSudoku](https://github.com/vplasencia/zkSudoku)
+    
+* zkSudoku using Plonk: [https://github.com/vplasencia/zkSudoku-plonk](https://github.com/vplasencia/zkSudoku-plonk)
+    
 
 We will deploy smart contracts on [Harmony Testnet](https://explorer.pops.one/) and the frontend on [Vercel](https://vercel.com/).
 
@@ -27,46 +37,56 @@ We will deploy smart contracts on [Harmony Testnet](https://explorer.pops.one/) 
 
 These are some important dependencies that we will use:
 
-- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
-- [yarn](https://yarnpkg.com/getting-started/install)
-- [circom](https://docs.circom.io/getting-started/installation/)
-- [snarkjs](https://github.com/iden3/snarkjs#install-snarkjs)
+* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)
+    
+* [yarn](https://yarnpkg.com/getting-started/install)
+    
+* [circom](https://docs.circom.io/getting-started/installation/)
+    
+* [snarkjs](https://github.com/iden3/snarkjs#install-snarkjs)
+    
 
 ## Circuits
 
-### 1. Create the circuit
+### 1\. Create the circuit
 
-- Create the `zkSudoku` folder:
+* Create the `zkSudoku` folder:
+    
 
 ```bash
 mkdir zkSudoku
 ```
 
-- Go inside the `zkSudoku` folder:
+* Go inside the `zkSudoku` folder:
+    
 
 ```bash
 cd zkSudoku
 ```
 
-- Create the `circuits` folder:
+* Create the `circuits` folder:
+    
 
 ```bash
 mkdir circuits
 ```
 
-- Go inside the `circuits` folder:
+* Go inside the `circuits` folder:
+    
 
 ```bash
 cd circuits
 ```
 
-- Create the `package.json` file:
+* Create the `package.json` file:
+    
 
 ```bash
 yarn init -y
 ```
 
-- Add the `circomlib` library to use some circuits from there:
+* Add the `circomlib` library to use some circuits from there:
+    
 
 ```bash
 yarn add circomlib
@@ -74,19 +94,22 @@ yarn add circomlib
 
 **Note:** To know more about the `circomlib` library read the [circomlib documentation](https://github.com/iden3/circomlib).
 
-- Create the `sudoku` folder to write the circuit there:
+* Create the `sudoku` folder to write the circuit there:
+    
 
 ```bash
 mkdir sudoku
 ```
 
-- Go inside the `sudoku` folder:
+* Go inside the `sudoku` folder:
+    
 
 ```bash
 cd sudoku
 ```
 
-- Open a code editor inside the `sudoku` folder.
+* Open a code editor inside the `sudoku` folder.
+    
 
 **Note:** I use Visual Studio Code. To open Visual Studio Code, run:
 
@@ -94,7 +117,8 @@ cd sudoku
 code .
 ```
 
-- Create the `sudoku.circom` file and add the circom code:
+* Create the `sudoku.circom` file and add the circom code:
+    
 
 ```bash
 pragma circom 2.0.0;
@@ -225,9 +249,10 @@ template Sudoku() {
 component main {public [unsolved]} = Sudoku();
 ```
 
-### 2. Compile the circuit
+### 2\. Compile the circuit
 
-- Create a `compile.sh` file to use it every time you want to compile the circuit.
+* Create a `compile.sh` file to use it every time you want to compile the circuit.
+    
 
 **Note:** All the `.sh` files created inside the `zkSudoku/circuits/sudoku` folder, are generic, so you can use them in your circuits.
 
@@ -250,7 +275,8 @@ circom ${CIRCUIT}.circom --r1cs --wasm --sym --c
 
 **Note:** To learn how the above file was created, read the [snarkjs documentation](https://github.com/iden3/snarkjs).
 
-- Run the file.
+* Run the file.
+    
 
 Run the first time:
 
@@ -268,9 +294,10 @@ You should see something like this:
 
 ![CompileCircuitImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638604295/v1WTLgZYo.png align="left")
 
-### 3. Add the input file
+### 3\. Add the input file
 
-- Create the `input.json` file and add to it:
+* Create the `input.json` file and add to it:
+    
 
 ```json
 {
@@ -299,9 +326,10 @@ You should see something like this:
 }
 ```
 
-### 4. Generate the witness
+### 4\. Generate the witness
 
-- Create the `generateWitness.sh` file and add to it:
+* Create the `generateWitness.sh` file and add to it:
+    
 
 ```bash
 #!/bin/bash
@@ -323,7 +351,8 @@ node ${CIRCUIT}_js/generate_witness.js ${CIRCUIT}_js/${CIRCUIT}.wasm input.json 
 
 **Note:** To learn how the above file was created, read the [snarkjs documentation](https://github.com/iden3/snarkjs).
 
-- Run the file
+* Run the file
+    
 
 Run the first time:
 
@@ -341,7 +370,7 @@ You can use the `generateWitness.sh` script by running the file and passing it t
 
 When you run the script you will see the `witness.wtns` file inside the `sudoku_js` folder.
 
-### 5. Generate all the necessary files
+### 5\. Generate all the necessary files
 
 Create the `executeGroth16.sh` file and add to it:
 
@@ -415,7 +444,8 @@ snarkjs generatecall | tee parameters.txt
 
 **Note:** To learn how the above file was created, read the [snarkjs documentation](https://github.com/iden3/snarkjs).
 
-- Run the file
+* Run the file
+    
 
 Run the first time:
 
@@ -433,9 +463,10 @@ When you run the script if everything was correct, you will see `[INFO] snarkJS:
 
 ![ExecuteFileImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638636560/sv9gJ5mQQ.png align="left")
 
-### 6. Test circuits
+### 6\. Test circuits
 
-- Go inside the `circuits` folder and open a code editor.
+* Go inside the `circuits` folder and open a code editor.
+    
 
 **Note:** I use Visual Studio Code. To open Visual Studio Code, run:
 
@@ -443,23 +474,26 @@ When you run the script if everything was correct, you will see `[INFO] snarkJS:
 code .
 ```
 
-- Install Dependencies:
-
-  - Install [chai](https://www.chaijs.com/) as a dev dependency:
-
-  ```bash
-  yarn add -D chai
-  ```
-
-  - Install [circom_tester](https://github.com/iden3/circom_tester):
-
-  ```bash
-  yarn add circom_tester
-  ```
-
-- Create a `test` folder.
-
-- Inside the `test` folder, create a `circuits.js` file and add to it:
+* Install Dependencies:
+    
+    * Install [chai](https://www.chaijs.com/) as a dev dependency:
+        
+    
+    ```bash
+    yarn add -D chai
+    ```
+    
+    * Install [circom\_tester](https://github.com/iden3/circom_tester):
+        
+    
+    ```bash
+    yarn add circom_tester
+    ```
+    
+* Create a `test` folder.
+    
+* Inside the `test` folder, create a `circuits.js` file and add to it:
+    
 
 ```javascript
 const { assert } = require("chai");
@@ -668,7 +702,8 @@ describe("Sudoku circuit", function () {
 });
 ```
 
-- To run tests using `yarn test` or `npm test` instead of `mocha test`, inside the `package.json` file add:
+* To run tests using `yarn test` or `npm test` instead of `mocha test`, inside the `package.json` file add:
+    
 
 ```json
 "scripts": {
@@ -697,7 +732,8 @@ The `package.json` file will look like this:
 }
 ```
 
-- Run tests:
+* Run tests:
+    
 
 ```bash
 yarn test
@@ -707,7 +743,8 @@ You will see:
 
 ![CircuitsTestsImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638667838/hYT5qq6R-.png align="left")
 
-- If you uncomment the console logs, you will see that each test that should fail, is failing on the line of the circuit that should fail.
+* If you uncomment the console logs, you will see that each test that should fail, is failing on the line of the circuit that should fail.
+    
 
 ![CircuitsTestLogImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654659813001/QxfVYt3Cv.png align="left")
 
@@ -715,59 +752,67 @@ In this case it is line 114: `ieSquare[indexSquare].out === 0;`, when we check t
 
 ## Smart Contracts
 
-### 7. Set up the local environment to work with smart contracts
+### 7\. Set up the local environment to work with smart contracts
 
 For setting up the local environment to work with smart contracts, we are going to use the `hardhat` library. To know more about `hardhat`, read the [hardhat documentation](https://hardhat.org/getting-started/).
 
-- Open a terminal inside the `zkSudoku` folder.
-
-- Create the `contracts` folder:
+* Open a terminal inside the `zkSudoku` folder.
+    
+* Create the `contracts` folder:
+    
 
 ```bash
 mkdir contracts
 ```
 
-- Go inside the `contracts` folder:
+* Go inside the `contracts` folder:
+    
 
 ```bash
 cd contracts
 ```
 
-- Create the `package.json` file:
+* Create the `package.json` file:
+    
 
 ```bash
 yarn init -y
 ```
 
-- Add the `hardhat` library to work locally with smart contracts:
+* Add the `hardhat` library to work locally with smart contracts:
+    
 
 ```bash
 yarn add -D hardhat
 ```
 
-- Create the hardhat project:
+* Create the hardhat project:
+    
 
 ```bash
 npx hardhat
 ```
 
-- Select `Create a basic sample project` (it is the default option) and accept everything (press Enter).
-
-- Compile and test smart contracts to make sure that everything is correct.
-
-- To compile the contracts, run:
+* Select `Create a basic sample project` (it is the default option) and accept everything (press Enter).
+    
+* Compile and test smart contracts to make sure that everything is correct.
+    
+* To compile the contracts, run:
+    
 
 ```bash
 npx hardhat compile
 ```
 
-- To test contracts, run:
+* To test contracts, run:
+    
 
 ```bash
 npx hardhat test
 ```
 
-- Open a code editor (inside the `zkSudoku/contracts` folder, in the hardhat project created).
+* Open a code editor (inside the `zkSudoku/contracts` folder, in the hardhat project created).
+    
 
 **Note:** I use Visual Studio Code. To open Visual Studio Code, run:
 
@@ -775,15 +820,19 @@ npx hardhat test
 code .
 ```
 
-- Delete these files (**do not delete the folders**):
+* Delete these files (**do not delete the folders**):
+    
+    * `sample-test.js` inside the `test` folder
+        
+    * `sample-script.js` inside the `scripts` folder
+        
+    * `Greeter.sol` inside the `contracts` folder
+        
 
-  - `sample-test.js` inside the `test` folder
-  - `sample-script.js` inside the `scripts` folder
-  - `Greeter.sol` inside the `contracts` folder
+### 8\. Create smart contracts
 
-### 8. Create smart contracts
-
-- Copy the `sudokuVerifier.sol` generated before.
+* Copy the `sudokuVerifier.sol` generated before.
+    
 
 You can copy the file or you can run this:
 
@@ -791,7 +840,8 @@ You can copy the file or you can run this:
 cp ../circuits/sudoku/sudokuVerifier.sol contracts
 ```
 
-- Inside the `zkSudoku/contracts/contracts` folder, create the `Sudoku.sol` file and add to it:
+* Inside the `zkSudoku/contracts/contracts` folder, create the `Sudoku.sol` file and add to it:
+    
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -920,13 +970,15 @@ contract Sudoku {
 }
 ```
 
-- Smart contracts graph:
+* Smart contracts graph:
+    
 
 ![SmartContractsGraph.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654660672261/zyfCWrdr8.png align="left")
 
-### 9. Test smart contracts
+### 9\. Test smart contracts
 
-- Add the [snarkjs](https://github.com/iden3/snarkjs) library to test the generation of the proof:
+* Add the [snarkjs](https://github.com/iden3/snarkjs) library to test the generation of the proof:
+    
 
 ```bash
 yarn add snarkjs
@@ -939,37 +991,42 @@ yarn add snarkjs
 ```bash
 snarkjs -v
 ```
+
 You will see something like this:
 
 ![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
 
 **2-** To check the local `snarkjs` version, go to the `package.json` file and check the `snarkjs` version there. You will see something like this:
-  
+
 ![contractslocalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663535012941/-prtnTr9Q.png align="left")
 
 You can see that both versions of `snarkjs` are the same: `0.4.19`.
 
-- Create a `zkproof` folder:
+* Create a `zkproof` folder:
+    
 
 ```bash
 mkdir zkproof
 ```
 
-- Copy the `sudoku.wasm` and `sudoku_final.zkey` files inside the `zkproof` folder created before:
-
-  - Copy the `sudoku.wasm` file inside the `zkproof` folder or run:
-
-  ```bash
-  cp ../circuits/sudoku/sudoku_js/sudoku.wasm zkproof
-  ```
-
-  - Copy the `sudoku_final.zkey` file inside the `zkproof` folder or run:
-
-  ```bash
-  cp ../circuits/sudoku/sudoku_final.zkey zkproof
-  ```
-
-- Add a `test.js` file inside the `test` folder and add to it:
+* Copy the `sudoku.wasm` and `sudoku_final.zkey` files inside the `zkproof` folder created before:
+    
+    * Copy the `sudoku.wasm` file inside the `zkproof` folder or run:
+        
+    
+    ```bash
+    cp ../circuits/sudoku/sudoku_js/sudoku.wasm zkproof
+    ```
+    
+    * Copy the `sudoku_final.zkey` file inside the `zkproof` folder or run:
+        
+    
+    ```bash
+    cp ../circuits/sudoku/sudoku_final.zkey zkproof
+    ```
+    
+* Add a `test.js` file inside the `test` folder and add to it:
+    
 
 ```javascript
 const { expect } = require("chai");
@@ -1153,8 +1210,10 @@ describe("Sudoku", function () {
 });
 ```
 
-- Inside a `test` folder, create a `utils` folder.
-- Inside the `utils` folder, create a `utils.js` file and add to it:
+* Inside a `test` folder, create a `utils` folder.
+    
+* Inside the `utils` folder, create a `utils.js` file and add to it:
+    
 
 ```javascript
 const { groth16 } = require("snarkjs");
@@ -1189,7 +1248,8 @@ module.exports = {
 };
 ```
 
-- To have the gas reporter when testing smart contracts, install the [hardhat-gas-reporter library](https://github.com/cgewecke/hardhat-gas-reporter). Run:
+* To have the gas reporter when testing smart contracts, install the [hardhat-gas-reporter library](https://github.com/cgewecke/hardhat-gas-reporter). Run:
+    
 
 ```bash
 yarn add -D hardhat-gas-reporter
@@ -1201,7 +1261,8 @@ Then, in the `hardhat.config.js` file, after the last `require`, at the top, add
 require("hardhat-gas-reporter");
 ```
 
-- To add the optimizer, modify your solidity config in the `hardhat.config.js` file like this:
+* To add the optimizer, modify your solidity config in the `hardhat.config.js` file like this:
+    
 
 ```javascript
 solidity: {
@@ -1215,7 +1276,8 @@ solidity: {
   },
 ```
 
-- To test contracts, run:
+* To test contracts, run:
+    
 
 ```bash
 npx hardhat test
@@ -1225,9 +1287,10 @@ When you run the above line, you will see:
 
 ![RunTestsImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638709579/h8jb_erNp.png align="left")
 
-### 10. Run smart contracts
+### 10\. Run smart contracts
 
-- Inside the `scripts` folder, add a `run.js` file (to play around with smart contracts) and add to it:
+* Inside the `scripts` folder, add a `run.js` file (to play around with smart contracts) and add to it:
+    
 
 ```javascript
 const main = async () => {
@@ -1372,9 +1435,10 @@ const runMain = async () => {
 runMain();
 ```
 
-- `callDataSudoku` is the data of the `parameters.txt` file generated before, the `verifyProof` function will return true. If you change an element of the `callDataSudoku` variable, the `verifyProof` function will return false.
-
-- Run the `run.js` file:
+* `callDataSudoku` is the data of the `parameters.txt` file generated before, the `verifyProof` function will return true. If you change an element of the `callDataSudoku` variable, the `verifyProof` function will return false.
+    
+* Run the `run.js` file:
+    
 
 ```bash
 npx hardhat run scripts/run.js
@@ -1384,7 +1448,7 @@ You will see something like this:
 
 ![RunContractsImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638733833/iikcFrIPv.png align="left")
 
-### 11. Deploy smart contracts
+### 11\. Deploy smart contracts
 
 We are going to deploy smart contracts on [Harmony Testnet](https://explorer.pops.one/).
 
@@ -1392,7 +1456,8 @@ We will use [Metamask](https://metamask.io/).
 
 **Note:** You can add the Harmony Testnet network on Metamask by following the [Harmony documentation](https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/adding-harmony) or you can do it by clicking the `Add Harmony Testnet Shard 0` button on the [Add Network App](https://addnetwork.vercel.app/) (Add Network is a web application I created using official documentation).
 
-- Inside the `scripts` folder, add a `deploy.js` file and add to it:
+* Inside the `scripts` folder, add a `deploy.js` file and add to it:
+    
 
 ```javascript
 const main = async () => {
@@ -1422,9 +1487,10 @@ runMain();
 
 **Note:** It is almost the same as `run.js` but only deployed smart contracts.
 
-- Deploy smart contracts on Harmony Testnet.
-
-- Create a `.env` file and add to it:
+* Deploy smart contracts on Harmony Testnet.
+    
+* Create a `.env` file and add to it:
+    
 
 ```bash
 PRIVATE_KEY=
@@ -1444,13 +1510,15 @@ cache
 artifacts
 ```
 
-- Install the [dotenv library](https://github.com/motdotla/dotenv):
+* Install the [dotenv library](https://github.com/motdotla/dotenv):
+    
 
 ```bash
 yarn add dotenv
 ```
 
-- Go to the `hardhat.config.js` file and edit `module.exports` like this:
+* Go to the `hardhat.config.js` file and edit `module.exports` like this:
+    
 
 ```javascript
 module.exports = {
@@ -1476,13 +1544,15 @@ module.exports = {
 };
 ```
 
-- Go to `hardhat.config.js` and add after the last `require` at the top:
+* Go to `hardhat.config.js` and add after the last `require` at the top:
+    
 
 ```javascript
 require("dotenv").config();
 ```
 
-- Your `hardhat.config.js` file should look like this:
+* Your `hardhat.config.js` file should look like this:
+    
 
 ```javascript
 require("@nomiclabs/hardhat-waffle");
@@ -1528,11 +1598,13 @@ module.exports = {
 };
 ```
 
-- Get Harmony ONE faucet for Testnet:
+* Get Harmony ONE faucet for Testnet:
+    
 
-Go to <https://faucet.pops.one/> and follow the instructions there.
+Go to [https://faucet.pops.one/](https://faucet.pops.one/) and follow the instructions there.
 
-- Run the `deploy.js` file:
+* Run the `deploy.js` file:
+    
 
 ```bash
 npx hardhat run scripts/deploy.js --network harmonyTestnet
@@ -1540,13 +1612,14 @@ npx hardhat run scripts/deploy.js --network harmonyTestnet
 
 ![DeployedContractsImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638753683/tf1mjf8Pa.png align="left")
 
-**Note:** You can see the transactions on the Harmony Block Explorer: <https://explorer.pops.one/>
+**Note:** You can see the transactions on the Harmony Block Explorer: [https://explorer.pops.one/](https://explorer.pops.one/)
 
 ## Frontend
 
-### 12. Creating the application
+### 12\. Creating the application
 
-- Create the [Next.js Application](https://nextjs.org/).
+* Create the [Next.js Application](https://nextjs.org/).
+    
 
 Open a terminal inside the `zkSudoku` folder and run:
 
@@ -1554,13 +1627,15 @@ Open a terminal inside the `zkSudoku` folder and run:
 yarn create next-app zksudoku-ui
 ```
 
-- Go inside the `zksudoku-ui` folder:
+* Go inside the `zksudoku-ui` folder:
+    
 
 ```bash
 cd zksudoku-ui
 ```
 
-- Open a code editor inside the `zksudoku-ui` folder.
+* Open a code editor inside the `zksudoku-ui` folder.
+    
 
 **Note:** I use Visual Studio Code. To open Visual Studio Code, run:
 
@@ -1568,33 +1643,38 @@ cd zksudoku-ui
 code .
 ```
 
-- To test that everything is fine let's start the server, run:
+* To test that everything is fine let's start the server, run:
+    
 
 ```bash
 yarn dev
 ```
 
-Open a browser and go to <http://localhost:3000/>.
+Open a browser and go to [http://localhost:3000/](http://localhost:3000/).
 
 You will see this:
 
 ![NextjsInitialPageImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638771868/CXzQZBQ4z.png align="left")
 
-- Stop the server and let's start building the game.
+* Stop the server and let's start building the game.
+    
 
-### 13. Add some libraries
+### 13\. Add some libraries
 
-- Add [Tailwind](https://tailwindcss.com/) to style pages.
+* Add [Tailwind](https://tailwindcss.com/) to style pages.
+    
 
 Follow the [oficial documentation for adding Tailwind in Next.js](https://tailwindcss.com/docs/guides/nextjs).
 
-- Add [wagmi](https://wagmi.sh/) to comunicate with smart contracts in the frontend:
+* Add [wagmi](https://wagmi.sh/) to comunicate with smart contracts in the frontend:
+    
 
 ```bash
 yarn add wagmi ethers
 ```
 
-- Add [snarkjs](https://github.com/iden3/snarkjs) to generate zk proof in the browser:
+* Add [snarkjs](https://github.com/iden3/snarkjs) to generate zk proof in the browser:
+    
 
 ```bash
 yarn add snarkjs
@@ -1607,6 +1687,7 @@ yarn add snarkjs
 ```bash
 snarkjs -v
 ```
+
 You will see something like this:
 
 ![globalsnarkjs.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1663532650986/ejzt5Y5PD.png align="left")
@@ -1660,9 +1741,10 @@ module.exports = nextConfig;
 
 In this guide, I use `snarkjs` as a package (way 2).
 
-### 14. Add some configuration
+### 14\. Add some configuration
 
-- To generate the proof, add a `.babelrc` file and add to it:
+* To generate the proof, add a `.babelrc` file and add to it:
+    
 
 ```javascript
 {
@@ -1686,23 +1768,26 @@ In this guide, I use `snarkjs` as a package (way 2).
 }
 ```
 
-### 15. Add Zero Knowledge in the frontend
+### 15\. Add Zero Knowledge in the frontend
 
-- Inside the `public` folder, add a `zkproof` folder and copy the `sudoku.wasm` and `sudoku_final.key` files there:
-
-  - To copy the `sudoku.wasm` file:
-
-  ```bash
-  cp ../../circuits/sudoku/sudoku_js/sudoku.wasm ./public/zkproof
-  ```
-
-  - To copy the `sudoku_final.zkey` file:
-
-  ```bash
-  cp ../../circuits/sudoku/sudoku_final.zkey ./public/zkproof
-  ```
-
-- Inside the `zksudoku-ui` folder, create a `zkproof` folder. Inside this new folder created, create the `snarkjsZkproof.js` file and add to it:
+* Inside the `public` folder, add a `zkproof` folder and copy the `sudoku.wasm` and `sudoku_final.key` files there:
+    
+    * To copy the `sudoku.wasm` file:
+        
+    
+    ```bash
+    cp ../../circuits/sudoku/sudoku_js/sudoku.wasm ./public/zkproof
+    ```
+    
+    * To copy the `sudoku_final.zkey` file:
+        
+    
+    ```bash
+    cp ../../circuits/sudoku/sudoku_final.zkey ./public/zkproof
+    ```
+    
+* Inside the `zksudoku-ui` folder, create a `zkproof` folder. Inside this new folder created, create the `snarkjsZkproof.js` file and add to it:
+    
 
 ```javascript
 import { groth16 } from "snarkjs";
@@ -1736,7 +1821,7 @@ export async function exportCallDataGroth16(input, wasmPath, zkeyPath) {
 
 **Note:** If you get an error importing `groth16` from `snarkjs` that says:
 
-```text
+```bash
 ./node_modules/fastfile/src/fastfile.js
 Can't import the named export 'O_TRUNC' (imported as 'O_TRUNC') from default-exporting module (only default export is available)
 ```
@@ -1753,7 +1838,34 @@ Or this way:
 const { groth16 } = require("snarkjs");
 ```
 
-- Inside the `zksudoku-ui/zkproof` folder, create the `sudoku` folder and inside this new folder created, create the `snarkjsSudoku.js` file and add to it:
+**Note:** If you get an error importing `groth16` from `snarkjs` that says:
+
+```bash
+./node_modules/snarkjs/build/main.cjs:8:0
+Module not found: Can't resolve 'readline'
+```
+
+Then, add the `config.resolve.fallback.readline = false;` line in the `next.config.js` file like so:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: function (config, options) {
+    if (!options.isServer) {
+      config.resolve.fallback.fs = false;
+      config.resolve.fallback.readline = false;
+    }
+    config.experiments = { asyncWebAssembly: true };
+    return config;
+  },
+};
+
+module.exports = nextConfig;
+```
+
+* Inside the `zksudoku-ui/zkproof` folder, create the `sudoku` folder and inside this new folder created, create the `snarkjsSudoku.js` file and add to it:
+    
 
 ```javascript
 import { exportCallDataGroth16 } from "../snarkjsZkproof";
@@ -1781,9 +1893,10 @@ export async function sudokuCalldata(unsolved, solved) {
 }
 ```
 
-### 16. Connect to smart contracts to verify the proof
+### 16\. Connect to smart contracts to verify the proof
 
-- Code to connect to smart contracts:
+* Code to connect to smart contracts:
+    
 
 ```javascript
 const contract = useContract({
@@ -1793,7 +1906,8 @@ const contract = useContract({
 });
 ```
 
-- Code to use the `verifySudoku` function which is in the `Sudoku` smart contract:
+* Code to use the `verifySudoku` function which is in the `Sudoku` smart contract:
+    
 
 ```javascript
 result = await contract.verifySudoku(
@@ -1806,169 +1920,196 @@ result = await contract.verifySudoku(
 
 **Note:** The two code blocks above are inside `pages/sudoku.js`.
 
-### 17. Add utility files
+### 17\. Add utility files
 
-- Inside the `zksudoku-ui` folder add the `utils` folder.
-- Inside the `utils` folder created, add:
-
-  - The `abiFiles` folder which contains all the abi files needed for the frontend application. You can find the abi file here: `zkSudoku/contracts/artifacts/contracts/Sudoku.sol/Sudoku.json`. The abi file is a file generated when the smart contract is compiled.
-  - The `contractsaddress.json` file that contains all the necessary smart contracts addresses, in this case, the `Sudoku` contract:
-
-  ```json
-  {
-    "sudokuContract": "0xCdf6cb8d73A7D382f154A1e67F12c7319987cb31"
-  }
-  ```
-
-  - The `networks.json` file which contains all the chains that we can use in the app and the `selectedChain` which is the network used in this project (Harmony Testnet):
-
-  ```json
-  {
-    "selectedChain": "1666700000",
-    "1337": {
-      "chainId": "1337",
-      "chainName": "Localhost 8545",
-      "rpcUrls": ["http://localhost:8545"],
-      "nativeCurrency": {
-        "symbol": "ETH"
-      },
-      "blockExplorerUrls": []
-    },
-    "1666700000": {
-      "chainId": "1666700000",
-      "chainName": "Harmony Testnet Shard 0",
-      "rpcUrls": ["https://api.s0.b.hmny.io"],
-      "nativeCurrency": {
-        "symbol": "ONE"
-      },
-      "blockExplorerUrls": ["https://explorer.pops.one/"]
-    },
-    "1666600000": {
-      "chainId": "1666600000",
-      "chainName": "Harmony Mainnet Shard 0",
-      "rpcUrls": ["https://api.harmony.one"],
-      "nativeCurrency": {
-        "symbol": "ONE"
-      },
-      "blockExplorerUrls": ["https://explorer.harmony.one/"]
+* Inside the `zksudoku-ui` folder add the `utils` folder.
+    
+* Inside the `utils` folder created, add:
+    
+    * The `abiFiles` folder which contains all the abi files needed for the frontend application. You can find the abi file here: `zkSudoku/contracts/artifacts/contracts/Sudoku.sol/Sudoku.json`. The abi file is a file generated when the smart contract is compiled.
+        
+    * The `contractsaddress.json` file that contains all the necessary smart contracts addresses, in this case, the `Sudoku` contract:
+        
+    
+    ```json
+    {
+      "sudokuContract": "0xCdf6cb8d73A7D382f154A1e67F12c7319987cb31"
     }
-  }
-  ```
-
-  - The `switchNetwork.js` file to switch to the network used in the projects if necessary. (In this project we are using Harmony Testnet)
-
-  ```javascript
-  import networks from "../utils/networks.json";
-
-  export const switchNetwork = async () => {
-    if (window.ethereum) {
-      try {
-        // Try to switch to the chain
-        await ethereum.request({
-          method: "wallet_switchEthereumChain",
-          params: [
-            { chainId: `0x${parseInt(networks.selectedChain).toString(16)}` },
-          ],
-        });
-      } catch (switchError) {
-        // This error code indicates that the chain has not been added to MetaMask.
-        if (switchError.code === 4902) {
-          try {
-            await ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: `0x${parseInt(networks.selectedChain).toString(16)}`,
-                  chainName: networks[networks.selectedChain].chainName,
-                  rpcUrls: networks[networks.selectedChain].rpcUrls,
-                  nativeCurrency: {
-                    symbol:
-                      networks[networks.selectedChain].nativeCurrency.symbol,
-                    decimals: 18,
-                  },
-                  blockExplorerUrls:
-                    networks[networks.selectedChain].blockExplorerUrls,
-                },
-              ],
-            });
-          } catch (addError) {
-            console.log(addError);
-          }
-        }
-        // handle other "switch" errors
+    ```
+    
+    * The `networks.json` file which contains all the chains that we can use in the app and the `selectedChain` which is the network used in this project (Harmony Testnet):
+        
+    
+    ```json
+    {
+      "selectedChain": "1666700000",
+      "1337": {
+        "chainId": "1337",
+        "chainName": "Localhost 8545",
+        "rpcUrls": ["http://localhost:8545"],
+        "nativeCurrency": {
+          "symbol": "ETH"
+        },
+        "blockExplorerUrls": []
+      },
+      "1666700000": {
+        "chainId": "1666700000",
+        "chainName": "Harmony Testnet Shard 0",
+        "rpcUrls": ["https://api.s0.b.hmny.io"],
+        "nativeCurrency": {
+          "symbol": "ONE"
+        },
+        "blockExplorerUrls": ["https://explorer.pops.one/"]
+      },
+      "1666600000": {
+        "chainId": "1666600000",
+        "chainName": "Harmony Mainnet Shard 0",
+        "rpcUrls": ["https://api.harmony.one"],
+        "nativeCurrency": {
+          "symbol": "ONE"
+        },
+        "blockExplorerUrls": ["https://explorer.harmony.one/"]
       }
-    } else {
-      // If window.ethereum is not found then MetaMask is not installed
-      alert(
-        "MetaMask is not installed. Please install it to use this app: https://metamask.io/download/"
-      );
     }
-  };
-  ```
+    ```
+    
+    * The `switchNetwork.js` file to switch to the network used in the projects if necessary. (In this project we are using Harmony Testnet)
+        
+    
+    ```javascript
+    import networks from "../utils/networks.json";
+    
+    export const switchNetwork = async () => {
+      if (window.ethereum) {
+        try {
+          // Try to switch to the chain
+          await ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [
+              { chainId: `0x${parseInt(networks.selectedChain).toString(16)}` },
+            ],
+          });
+        } catch (switchError) {
+          // This error code indicates that the chain has not been added to MetaMask.
+          if (switchError.code === 4902) {
+            try {
+              await ethereum.request({
+                method: "wallet_addEthereumChain",
+                params: [
+                  {
+                    chainId: `0x${parseInt(networks.selectedChain).toString(16)}`,
+                    chainName: networks[networks.selectedChain].chainName,
+                    rpcUrls: networks[networks.selectedChain].rpcUrls,
+                    nativeCurrency: {
+                      symbol:
+                        networks[networks.selectedChain].nativeCurrency.symbol,
+                      decimals: 18,
+                    },
+                    blockExplorerUrls:
+                      networks[networks.selectedChain].blockExplorerUrls,
+                  },
+                ],
+              });
+            } catch (addError) {
+              console.log(addError);
+            }
+          }
+          // handle other "switch" errors
+        }
+      } else {
+        // If window.ethereum is not found then MetaMask is not installed
+        alert(
+          "MetaMask is not installed. Please install it to use this app: https://metamask.io/download/"
+        );
+      }
+    };
+    ```
+    
 
-### 18. Add other files
+### 18\. Add other files
 
-- Delete:
+* Delete:
+    
+    * The `api` folder inside the `pages` folder.
+        
+    * The `favicon.ico` file, inside the `public` folder.
+        
+    * The `vercel.svg` file, inside the `public` folder.
+        
+* Create:
+    
+    * The `assets` folder and add the image inside it.
+        
+    * The `components` folder and copy all the code inside that folder.
+        
+* Copy:
+    
+    * All the files inside the `pages` folder.
+        
+    * All the files inside the `styles` folder.
+        
+    * The `favicon.ico` and `socialMedia.png` files, inside the `public` folder.
+        
 
-  - The `api` folder inside the `pages` folder.
-  - The `favicon.ico` file, inside the `public` folder.
-  - The `vercel.svg` file, inside the `public` folder.
-
-- Create:
-  - The `assets` folder and add the image inside it.
-  - The `components` folder and copy all the code inside that folder.
-
-- Copy:
-  - All the files inside the `pages` folder.
-  - All the files inside the `styles` folder.
-  - The `favicon.ico` and `socialMedia.png` files, inside the `public` folder.
-
-### 19. Deploy the frontend
+### 19\. Deploy the frontend
 
 We are going to deploy the frontend on [Vercel](https://vercel.com/).
 
-- Create a new [Github](https://github.com/) repository.
-
-- Go to Vercel:
-
-  - Create a new project.
-  - Import the Github repo created before.
-  - Configure the project (select `Next.js` as FRAMEWORK PRESET and `zksudoku-ui` as ROOT DIRECTORY) and click `Deploy`:
-
-  ![VercelConfigImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654643769359/823-B6u_6.png align="left")
+* Create a new [Github](https://github.com/) repository.
+    
+* Go to Vercel:
+    
+    * Create a new project.
+        
+    * Import the Github repo created before.
+        
+    * Configure the project (select `Next.js` as FRAMEWORK PRESET and `zksudoku-ui` as ROOT DIRECTORY) and click `Deploy`:
+        
+    
+    ![VercelConfigImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654643769359/823-B6u_6.png align="left")
+    
 
 #### Live app:
 
-<https://zk-sudoku.vercel.app/>
+[https://zk-sudoku.vercel.app/](https://zk-sudoku.vercel.app/)
 
 #### Live App Images:
 
-- Initial Page:
+* Initial Page:
+    
 
 ![LiveAppImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654644050000/xDHVwf0jX.png align="left")
 
-- Wrong answer:
+* Wrong answer:
+    
 
 ![LiveAppWrongAnswerImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654644110903/g9QMcDnhV.png align="left")
 
-- Successfully verified:
+* Successfully verified:
+    
 
 ![LiveAppSuccessfullyVerifiedImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654644173085/B5fLQ9DFs.png align="left")
 
 ## Some Tips
 
-- If you change the circuit, you should update:
-  - `sudokuVerifier.sol` inside `contracts/contracts`.
-  - `sudoku.wasm` and `sudoku_final/zkey` files inside `contracts/zkproof`.
-  - `sudoku.wasm` and `sudoku_final/zkey` files inside `zksudoku-ui/public/zkproof`.
-- If you change smart contracts you should update if necessary:
-
-  - The `Sudoku.json` abi file inside `zkSudoku-ui/utils/abiFiles`.
-  - The `contractaddress.json` file inside `zkSudoku-ui/utils/`(with the new Sudoku smart contract address in case smart contracts are deployed again).
-
-- If you change the network used to deploy you should update `selectedChain` inside `zkSudoku-ui/utils/networks.json`.
-
-- To copy or update all the zk elements to use and test smart contracts, you can create the `copyZkFiles.sh` file inside `zkSudoku/contracts/contracts/scripts` and add to it:
+* If you change the circuit, you should update:
+    
+    * `sudokuVerifier.sol` inside `contracts/contracts`.
+        
+    * `sudoku.wasm` and `sudoku_final/zkey` files inside `contracts/zkproof`.
+        
+    * `sudoku.wasm` and `sudoku_final/zkey` files inside `zksudoku-ui/public/zkproof`.
+        
+* If you change smart contracts you should update if necessary:
+    
+    * The `Sudoku.json` abi file inside `zkSudoku-ui/utils/abiFiles`.
+        
+    * The `contractaddress.json` file inside `zkSudoku-ui/utils/`(with the new Sudoku smart contract address in case smart contracts are deployed again).
+        
+* If you change the network used to deploy you should update `selectedChain` inside `zkSudoku-ui/utils/networks.json`.
+    
+* To copy or update all the zk elements to use and test smart contracts, you can create the `copyZkFiles.sh` file inside `zkSudoku/contracts/contracts/scripts` and add to it:
+    
 
 ```bash
 #!/bin/bash
@@ -1998,7 +2139,8 @@ And after that, you can always run:
 ./scripts/copyZkFiles.sh
 ```
 
-- To copy or update all the zk elements to use in the frontend, you can create the `copyZkFiles.sh` file inside `zkSudoku/zkSudoku-ui/scripts` and add to it:
+* To copy or update all the zk elements to use in the frontend, you can create the `copyZkFiles.sh` file inside `zkSudoku/zkSudoku-ui/scripts` and add to it:
+    
 
 ```bash
 #!/bin/bash
@@ -2037,7 +2179,8 @@ To create a zk dapp using Plonk instead of Groth16, you can follow the same step
 
 ### Circuits changes
 
-- We are not going to use Groth16, so instead of `executeGoth16.sh`, let's add a `executePlonk.sh` file and add to it:
+* We are not going to use Groth16, so instead of `executeGoth16.sh`, let's add a `executePlonk.sh` file and add to it:
+    
 
 ```bash
 #!/bin/bash
@@ -2105,13 +2248,14 @@ When you run the above `executePlonk.sh` file you will see:
 
 ![ExecutePlonkImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638792082/DIcg5jQ41.png align="left")
 
-Here we needed the `powersOfTau28_hez_final_15.ptau` instead of `powersOfTau28_hez_final_14.ptau` (as we used with Groth16) because the amount of Plonk constraints is 17901 and it is > 2\*\*14.
+Here we needed the `powersOfTau28_hez_final_15.ptau` instead of `powersOfTau28_hez_final_14.ptau` (as we used with Groth16) because the amount of Plonk constraints is 17901 and it is &gt; 2\*\*14.
 
 ![PlonkPowersOfTauImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638814320/SHjRDcQ3L.png align="left")
 
 ### Smart Contracts changes
 
-- The `Sudoku.sol` file changes a little because the `IVerifier` interface uses different input because of `verifyProof(bytes memory proof, uint[] memory pubSignals)` inside the generated `sudokuPlonkVerifier.sol` :
+* The `Sudoku.sol` file changes a little because the `IVerifier` interface uses different input because of `verifyProof(bytes memory proof, uint[] memory pubSignals)` inside the generated `sudokuPlonkVerifier.sol` :
+    
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -2236,7 +2380,8 @@ contract Sudoku {
 }
 ```
 
-- The `copyZkFiles.sh` changes because the verifier was called `sudokuPlonkVerifier`:
+* The `copyZkFiles.sh` changes because the verifier was called `sudokuPlonkVerifier`:
+    
 
 ```bash
 #!/bin/bash
@@ -2254,7 +2399,8 @@ cp ../circuits/sudoku/sudoku_js/sudoku.wasm zkproof
 cp ../circuits/sudoku/sudoku_final.zkey zkproof
 ```
 
-- Change the `utils.js` file inside `test/utils` folder:
+* Change the `utils.js` file inside `test/utils` folder:
+    
 
 ```javascript
 const { plonk } = require("snarkjs");
@@ -2278,7 +2424,8 @@ module.exports = {
 };
 ```
 
-- Change the `test.js` file inside the `test` folder:
+* Change the `test.js` file inside the `test` folder:
+    
 
 ```javascript
 const { expect } = require("chai");
@@ -2455,7 +2602,8 @@ When you run tests you will see something like this:
 
 ![RunTestsPlonk.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638832142/r5dlGfX6-.png align="left")
 
-- Change the `run.js` file inside the `scripts` folder:
+* Change the `run.js` file inside the `scripts` folder:
+    
 
 ```javascript
 const main = async () => {
@@ -2586,7 +2734,8 @@ const runMain = async () => {
 runMain();
 ```
 
-- Change the `deploy.js` file inside the `scripts` folder:
+* Change the `deploy.js` file inside the `scripts` folder:
+    
 
 ```javascript
 const main = async () => {
@@ -2621,13 +2770,15 @@ runMain();
 
 ### Frontend changes
 
-- In the `sudoku.js` file, inside `zksdoku-ui/pages`, change each time the `contract.verifySudoku` function is called:
+* In the `sudoku.js` file, inside `zksdoku-ui/pages`, change each time the `contract.verifySudoku` function is called:
+    
 
 ```javascript
 result = await contract.verifySudoku(calldata.proof, calldata.publicSignals);
 ```
 
-- Change `snarkjsZkproof.js`, inside `zksudoku-ui/zkproof` to use Plonk:
+* Change `snarkjsZkproof.js`, inside `zksudoku-ui/zkproof` to use Plonk:
+    
 
 ```javascript
 import { plonk } from "snarkjs";
@@ -2666,7 +2817,8 @@ Or this way:
 const { plonk } = require("snarkjs");
 ```
 
-- Change the `snarkjsSudoku.js` file inside `zksudoku-ui/zkproof/sudoku` to use the `exportCallDataPlonk` function:
+* Change the `snarkjsSudoku.js` file inside `zksudoku-ui/zkproof/sudoku` to use the `exportCallDataPlonk` function:
+    
 
 ```javascript
 import { exportCallDataPlonk } from "../snarkjsZkproof";
@@ -2694,7 +2846,8 @@ export async function sudokuCalldata(unsolved, solved) {
 }
 ```
 
-- Using Plonk, you can see that the `sudoku_final.zkey` file is about 470 MB. You can add this file to `.gitignore` in case you do not want to commit it because of the size.
+* Using Plonk, you can see that the `sudoku_final.zkey` file is about 470 MB. You can add this file to `.gitignore` in case you do not want to commit it because of the size.
+    
 
 ## Zero Knowledge Structure
 
@@ -2723,15 +2876,17 @@ The following graphic shows the structure of the most important zero knowledge e
 
 ## Github Repositories
 
-- zkSudoku using Groth16: <https://github.com/vplasencia/zkSudoku>
-- zkSudoku using Plonk: <https://github.com/vplasencia/zkSudoku-plonk>
+* zkSudoku using Groth16: [https://github.com/vplasencia/zkSudoku](https://github.com/vplasencia/zkSudoku)
+    
+* zkSudoku using Plonk: [https://github.com/vplasencia/zkSudoku-plonk](https://github.com/vplasencia/zkSudoku-plonk)
+    
 
 ## Live App
 
-<https://zk-sudoku.vercel.app/>
+[https://zk-sudoku.vercel.app/](https://zk-sudoku.vercel.app/)
 
 ## Conclusions
 
 Now we have a complete zk dapp that people can use.
 
-We can see that using Plonk instead of Groth16 can avoid a trusted ceremony for each circuit, but Plonk is not better for the user experience because it is slower and the zkey file is quite larger.  
+We can see that using Plonk instead of Groth16 can avoid a trusted ceremony for each circuit, but Plonk is not better for the user experience because it is slower and the zkey file is quite larger.
