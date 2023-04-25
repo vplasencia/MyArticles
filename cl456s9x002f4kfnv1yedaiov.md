@@ -1454,7 +1454,7 @@ We are going to deploy smart contracts on [Sepolia](https://sepolia.etherscan.io
 
 We will use [Metamask](https://metamask.io/).
 
-**Note:** You can add the Sepolia network on Metamask by following the [Sepolia website](https://sepolia.dev/) by clicking the `Add to Metamask` button.
+**Note:** You can add the Sepolia network on Metamask by following the [Sepolia website](https://sepolia.dev/) and clicking the `Add to Metamask` button.
 
 * Inside the `scripts` folder, add a `deploy.js` file and add to it:
     
