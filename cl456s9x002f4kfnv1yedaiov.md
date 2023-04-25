@@ -2885,6 +2885,13 @@ The following graphic shows the structure of the most important zero knowledge e
 
 [https://zk-sudoku.vercel.app/](https://zk-sudoku.vercel.app/)
 
+## Other resources
+
+* Generic scripts using circom and snarkjs:
+    
+    [https://github.com/vplasencia/circom-snarkjs-scripts](https://github.com/vplasencia/circom-snarkjs-scripts)
+    
+
 ## Conclusions
 
 Now we have a complete zk dapp that people can use.
