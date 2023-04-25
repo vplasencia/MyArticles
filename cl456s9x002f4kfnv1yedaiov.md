@@ -31,7 +31,7 @@ All the code is open source so you can read the article and look at the code:
 * zkSudoku using Plonk: [https://github.com/vplasencia/zkSudoku-plonk](https://github.com/vplasencia/zkSudoku-plonk)
     
 
-We will deploy smart contracts on [Harmony Testnet](https://explorer.pops.one/) and the frontend on [Vercel](https://vercel.com/).
+We will deploy smart contracts on [Sepolia](https://sepolia.etherscan.io/) and the frontend on [Vercel](https://vercel.com/).
 
 ## Install dependencies
 
@@ -1450,11 +1450,11 @@ You will see something like this:
 
 ### 11\. Deploy smart contracts
 
-We are going to deploy smart contracts on [Harmony Testnet](https://explorer.pops.one/).
+We are going to deploy smart contracts on [Sepolia](https://sepolia.etherscan.io/).
 
 We will use [Metamask](https://metamask.io/).
 
-**Note:** You can add the Harmony Testnet network on Metamask by following the [Harmony documentation](https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/adding-harmony) or you can do it by clicking the `Add Harmony Testnet Shard 0` button on the [Add Network App](https://addnetwork.vercel.app/) (Add Network is a web application I created using official documentation).
+**Note:** You can add the Sepolia network on Metamask by following the [Sepolia website](https://sepolia.dev/) by clicking the `Add to Metamask` button.
 
 * Inside the `scripts` folder, add a `deploy.js` file and add to it:
     
@@ -1487,7 +1487,7 @@ runMain();
 
 **Note:** It is almost the same as `run.js` but only deployed smart contracts.
 
-* Deploy smart contracts on Harmony Testnet.
+* Deploy smart contracts on Sepolia.
     
 * Create a `.env` file and add to it:
     
@@ -1532,12 +1532,12 @@ module.exports = {
     },
   },
   networks: {
-    harmonyTestnet: {
-      url: "https://api.s0.b.hmny.io",
+    sepolia: {
+      url: "https://rpc.sepolia.org/",
       accounts: [process.env.PRIVATE_KEY],
     },
-    harmonyMainnet: {
-      url: "https://api.harmony.one",
+    mumbai: {
+      url: "https://rpc-mumbai.maticvigil.com",
       accounts: [process.env.PRIVATE_KEY],
     },
   },
@@ -1586,33 +1586,33 @@ module.exports = {
     },
   },
   networks: {
-    harmonyTestnet: {
-      url: "https://api.s0.b.hmny.io",
+    sepolia: {
+      url: "https://rpc.sepolia.org/",
       accounts: [process.env.PRIVATE_KEY],
     },
-    harmonyMainnet: {
-      url: "https://api.harmony.one",
+    mumbai: {
+      url: "https://rpc-mumbai.maticvigil.com",
       accounts: [process.env.PRIVATE_KEY],
     },
   },
 };
 ```
 
-* Get Harmony ONE faucet for Testnet:
+* Get Sepolia ETH faucet for Testnet:
     
 
-Go to [https://faucet.pops.one/](https://faucet.pops.one/) and follow the instructions there.
+Go to [https://sepoliafaucet.com/](https://sepoliafaucet.com/) and follow the instructions there.
 
 * Run the `deploy.js` file:
     
 
 ```bash
-npx hardhat run scripts/deploy.js --network harmonyTestnet
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 ![DeployedContractsImage.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1654638753683/tf1mjf8Pa.png align="left")
 
-**Note:** You can see the transactions on the Harmony Block Explorer: [https://explorer.pops.one/](https://explorer.pops.one/)
+**Note:** You can see the transactions on the Sepolia Block Explorer: [https://sepolia.etherscan.io/](https://sepolia.etherscan.io/)
 
 ## Frontend
 
@@ -1937,12 +1937,12 @@ result = await contract.verifySudoku(
     }
     ```
     
-    * The `networks.json` file which contains all the chains that we can use in the app and the `selectedChain` which is the network used in this project (Harmony Testnet):
+    * The `networks.json` file which contains all the chains that we can use in the app and the `selectedChain` which is the network used in this project (Sepolia):
         
     
     ```json
     {
-      "selectedChain": "1666700000",
+      "selectedChain": "11155111",
       "1337": {
         "chainId": "1337",
         "chainName": "Localhost 8545",
@@ -1952,28 +1952,28 @@ result = await contract.verifySudoku(
         },
         "blockExplorerUrls": []
       },
-      "1666700000": {
-        "chainId": "1666700000",
-        "chainName": "Harmony Testnet Shard 0",
-        "rpcUrls": ["https://api.s0.b.hmny.io"],
+      "11155111": {
+        "chainId": "11155111",
+        "chainName": "Sepolia",
+        "rpcUrls": ["https://rpc.sepolia.org"],
         "nativeCurrency": {
-          "symbol": "ONE"
+          "symbol": "ETH"
         },
-        "blockExplorerUrls": ["https://explorer.pops.one/"]
+        "blockExplorerUrls": ["https://sepolia.etherscan.io/"]
       },
-      "1666600000": {
-        "chainId": "1666600000",
-        "chainName": "Harmony Mainnet Shard 0",
-        "rpcUrls": ["https://api.harmony.one"],
+      "80001": {
+        "chainId": "80001",
+        "chainName": "Mumbai",
+        "rpcUrls": ["https://rpc-mumbai.maticvigil.com"],
         "nativeCurrency": {
-          "symbol": "ONE"
+          "symbol": "MATIC"
         },
-        "blockExplorerUrls": ["https://explorer.harmony.one/"]
+        "blockExplorerUrls": ["https://mumbai.polygonscan.com/"]
       }
     }
     ```
     
-    * The `switchNetwork.js` file to switch to the network used in the projects if necessary. (In this project we are using Harmony Testnet)
+    * The `switchNetwork.js` file to switch to the network used in the projects if necessary. (In this project we are using Sepolia)
         
     
     ```javascript
