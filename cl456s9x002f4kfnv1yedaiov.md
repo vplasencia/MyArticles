@@ -8,6 +8,11 @@ tags: web-application, web3, zero-knowledge
 
 ---
 
+> **Stay tuned:** This article is being updated and the new version will be accessible through a new link that will be added here soon.  
+>   
+> Here is the GitHub repository with the updated code: [https://github.com/vplasencia/zk-sudoku-ts](https://github.com/vplasencia/zk-sudoku-ts)
+
+  
 This is a step-by-step guide on how to build a [Zero Knowledge](https://en.wikipedia.org/wiki/Zero-knowledge_proof) (zk) [Decentralized Application](https://en.wikipedia.org/wiki/Decentralized_application) (DApp) from zero to production.
 
 The goal is to explain the flow of a zk dapp and deploy it so that users can use it.
